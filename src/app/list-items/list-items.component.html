@@ -1,0 +1,36 @@
+<div class="bg-black text-slate-200 flex flex-col py-10">
+    <!-- Component -->
+    <div *ngFor="let publication of publications" class="flex gap-3 flex-col max-w-screen-sm mx-auto">
+        <div class="flex">
+            <div class="flex gap-2 text-sm">
+                <img src="https://styles.redditmedia.com/t5_38ilc/styles/communityIcon_n3tkf538pvo11.jpg" class="w-6 h-6 rounded-full" alt="">
+                <div class="opacity-70 font-bold">r/investimentos</div>
+                <div class="opacity-70">•</div>
+                <div class="opacity-70">10 days ago</div>
+            </div>
+
+            <div class="ml-auto">...</div>
+        </div>
+
+        <h3 class="text-lg font-medium">{{ publication.title }}</h3>
+        <p class="text-sm opacity-80">{{ publication.body }}</p>
+
+        <div class="flex gap-5">
+            <div class="flex items-center text-sm gap-1 bg-gray-800 py-1 px-3 rounded-full">
+                <ng-icon name="octChevronUp"></ng-icon>
+                <span>10</span>
+                <ng-icon name="octChevronDown"></ng-icon>
+            </div>
+            <div class="flex items-center text-sm gap-1 bg-gray-800 py-1 px-3 rounded-full">
+                <ng-icon name="octCommentDiscussion"></ng-icon>
+                <span>10</span>
+            </div>
+            <div class="flex items-center text-sm gap-1 bg-gray-800 py-1 px-3 rounded-full">
+                <ng-icon name="octShare"></ng-icon>
+                <span>Share</span>
+            </div>
+        </div>
+        <hr class="border-gray-700 my-5">
+    </div>
+</div>
+
