@@ -11,4 +11,13 @@ export class PublicationService {
   getPosts(): Observable<Publication[]> {
     return this.http.get<Publication[]>(`https://jsonplaceholder.typicode.com/posts`);
   }
+
+  getPostsFromLocalStorage(): Publication[] {
+    const publications = localStorage.getItem('publications');
+    return publications ? JSON.parse(publications) : [];
+  }
+
+  savePostsToLocalStorage(publications: Publication[]): void {
+    localStorage.setItem('publications', JSON.stringify(publications));
+  }
 }

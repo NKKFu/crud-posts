@@ -1,6 +1,30 @@
 # CrudPosts
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4 and was made as a part of a technical challenge of Angular for a job interview.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4 and was made as a part of a technical challenge of Angular for a job interview. Please check the file [CHALENGE.md](./CHALENGE.md) as they cite all instructions for this challenge, but please note they are in portuguese - Brazilian.
+
+## Project Structure
+
+This project has been organized in the following way:
+
+Pages & components
+- [ ] home
+    - [ ] new-post-modal
+    - [ ] card-post
+        - [ ] card-post-header
+            - [ ] card-post-header-edit-modal
+            - [ ] card-post-header-exclude-modal
+        - [ ] card-post-content
+        - [ ] card-post-footer
+            - [ ] card-post-footer-share-modal
+- [ ] posts/:id
+    - [ ] post-header
+    - [ ] post-content
+    - [ ] new-comment-modal
+    - [ ] card-comment
+        - [ ] card-comment-edit-modal
+        - [ ] card-comment-exclude-modal
+Generic Components
+- [ ] modal
 
 ## Development server
 

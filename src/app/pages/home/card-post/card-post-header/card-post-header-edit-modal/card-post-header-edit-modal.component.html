@@ -1,0 +1,19 @@
+<app-modal [isOpen]="editModalIsOpen" (onChange)="editModalIsOpen=$event">
+    <form [formGroup]="editForm">
+        <div class="flex flex-col gap-3">
+            <label for="title" class="text-lg font-bold">Edit your post</label>
+            <input formControlName="title" type="text" name="title"
+                class="border border-gray-300 text-black rounded-md p-2">
+            <textarea formControlName="body" name="description"
+                class="border border-gray-300 text-black rounded-md p-2"></textarea>
+
+            <div>
+                <button class="bg-slate-700 py-2 px-4 text-white rounded-md mr-2"
+                    (click)="editModalIsOpen=false">Cancel</button>
+                <button class="bg-green-600 py-2 px-4 text-white rounded-md"
+                    (click)="editModalIsOpen=false">Save</button>
+            </div>
+        </div>
+    </form>
+</app-modal>
+<ng-icon name="octPencil" (click)="openEditModal()"></ng-icon>
