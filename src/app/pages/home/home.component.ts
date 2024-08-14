@@ -12,7 +12,7 @@ import { CardPostHeaderComponent } from "./card-post/card-post-header/card-post-
     NgFor,
     CardPostComponent,
     CardPostHeaderComponent
-],
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -21,27 +21,27 @@ export class HomeComponent {
 
   constructor(private publicationService: PublicationService) { }
 
-  private loadPostsFromServer(): void {
+  private loadPostsFromServer(callback: (publications: Publication[]) => void): void {
     this.publicationService.getPosts().subscribe({
-      next: (response) => {
-        this.publications = this.publications.concat(response);
-        // Only load posts from local storage if the server request succeeds
-        // this.loadPostsFromLocalStorage();
-      },
+      next: callback,
       error: (err) => console.error('Error:', err),
       complete: () => console.log('Data fetched successfully')
     });
   }
 
-  // savePostsToLocalStorage(): void {
-  //   this.publicationService.savePostsToLocalStorage(this.publications);
-  // }
-
-  // deletePublication(id: string): void {
-  //   this.publications = this.publications.filter((publication) => publication.id !== id);
-  // }
-
   ngOnInit(): void {
-    this.loadPostsFromServer();
+    this.loadPostsFromServer((publicationsFromServer) => {
+      const publicationsFromLocalStorage = this.publicationService.getPostsFromLocalStorage();
+
+      this.publications = publicationsFromServer
+        .map((publication) => {
+          const localPublication = publicationsFromLocalStorage.find((p) => p.id === publication.id) || {};
+          return {
+            ...publication,
+            ...localPublication,
+          };
+        })
+        .filter((publication) => !publication.isDeleted);
+    });
   }
 }

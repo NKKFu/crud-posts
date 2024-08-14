@@ -3,4 +3,5 @@ export interface Publication {
     title: string;
     body: string;
     userId: string;
+    isDeleted: boolean;
 }

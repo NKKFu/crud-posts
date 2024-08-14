@@ -3,7 +3,8 @@ import { ModalComponent } from "../../../../../generic-components/modal/modal.co
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { octPencil } from '@ng-icons/octicons';
 import { Publication } from '../../../../../publication';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
+import { PublicationService } from '../../../../../publication.service';
 
 @Component({
   selector: 'app-card-post-header-edit-modal',
@@ -33,15 +34,23 @@ export class CardPostHeaderEditModalComponent {
 
   openEditModal() {
     this.editModalIsOpen = true;
-
+    
     // Set the form values to the current publication values
     this.editForm.controls.title.setValue(this.publication?.title)
     this.editForm.controls.body.setValue(this.publication?.body)
   }
 
-  constructor() {
-    this.editForm.valueChanges.subscribe((value) => {
-      console.log(value);
-    })
+  savePostChanges() {
+    this.publicationService.updatePublication({
+      ...this.publication,
+      title: this.editForm.controls.title.value || "",
+      body: this.editForm.controls.body.value || "",
+    });
+    this.editModalIsOpen = false;
+
+    // Reload the page to reflect the changes
+    window.location.reload();
   }
+
+  constructor(private publicationService: PublicationService) { }
 }
