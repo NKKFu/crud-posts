@@ -1,0 +1,20 @@
+<div class="flex flex-col gap-2">
+    <div class="flex">
+        <div class="flex gap-2 text-sm items-center">
+            <img src="https://styles.redditmedia.com/t5_38ilc/styles/communityIcon_n3tkf538pvo11.jpg"
+                class="w-9 h-9 rounded-full" alt="">
+            <div class="opacity-70 font-bold">{{ comment.name }}</div>
+            <div class="opacity-70">•</div>
+            <div class="opacity-70">#{{ comment.id }}</div>
+        </div>
+
+        <div class="ml-auto flex gap-3">
+            <app-post-comment-edit-modal [comment]="comment"></app-post-comment-edit-modal>
+            <app-post-comment-exclude-modal [comment]="comment"></app-post-comment-exclude-modal>
+        </div>
+    </div>
+
+    <div class="flex gap-5 break-all w-full">
+        {{ comment.body }}
+    </div>
+</div>

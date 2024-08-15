@@ -4,4 +4,5 @@ export interface PostComment {
     name: string;
     email: string;
     body: string;
+    isDeleted: boolean;
 }

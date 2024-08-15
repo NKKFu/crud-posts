@@ -4,11 +4,12 @@ import { Publication } from '../../publication';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { octArrowLeft } from '@ng-icons/octicons';
 import { CardPostFooterComponent } from '../home/card-post/card-post-footer/card-post-footer.component';
-import { PostComment } from '../../comment';
+import { PostComment } from '../../post-comment';
 import { CommentService } from '../../comment.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PublicationService } from '../../publication.service';
+import { PostCommentComponent } from "./post-comment/post-comment.component";
 
 @Component({
   selector: 'app-posts',
@@ -20,6 +21,7 @@ import { PublicationService } from '../../publication.service';
     ReactiveFormsModule,
     NgFor,
     NgIf,
+    PostCommentComponent
   ],
   providers: [
     provideIcons({
@@ -79,9 +81,26 @@ export class PostsComponent {
     });
 
     this.loadCommentsFromServer(id.toString(), (comments) => {
-      // Load comments from localStorage
-      const locallyStoredComments = this.commentService.getCommentsFromLocalStorage(id.toString());
-      this.comments = [...comments, ...locallyStoredComments];
+      const commentsFromLocalStorage = this.commentService.getCommentsFromLocalStorage(id.toString());
+      const commentsIdFromServer = comments.map(p => p.id);
+      const newLocalComments = commentsFromLocalStorage
+        .filter(p => !commentsIdFromServer.includes(p.id))
+        .filter(p => !p.isDeleted)
+
+      const commentsFromServerUpdatedWithLocalChanges = comments
+        .map((comment) => {
+          const localComment = commentsFromLocalStorage.find((p) => p.id === comment.id) || {};
+          return {
+            ...comment,
+            ...localComment,
+          };
+        })
+        .filter((comment) => !comment.isDeleted);
+
+      this.comments = [
+        ...newLocalComments,
+        ...commentsFromServerUpdatedWithLocalChanges,
+      ]
     });
   }
 

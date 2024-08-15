@@ -1,0 +1,19 @@
+<app-modal [isOpen]="editModalIsOpen" (onChange)="editModalIsOpen=$event">
+    <div class="flex flex-col gap-3">
+        <label for="title" class="text-lg font-bold">Edit your comment</label>
+        <textarea [formControl]="body" name="description"
+            class="w-full py-3 px-4 bg-black border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 duration-0"
+            rows="5"></textarea>
+
+        <div>
+            <button class="bg-slate-700 hover:bg-slate-900 py-2 px-4 text-white rounded-md mr-2"
+                (click)="editModalIsOpen=false">Cancel</button>
+            <button class="bg-green-600 hover:bg-green-900 py-2 px-4 text-white rounded-md"
+                (click)="saveChanges()">Save</button>
+        </div>
+    </div>
+</app-modal>
+
+<div class="cursor-pointer p-2 hover:bg-gray-500 rounded-full flex align-middle justify-items-center" (click)="openEditModal($event)">
+    <ng-icon name="octPencil"></ng-icon>
+</div>
