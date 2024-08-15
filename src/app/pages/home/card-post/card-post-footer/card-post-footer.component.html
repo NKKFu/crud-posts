@@ -1,15 +1,23 @@
 <div class="flex gap-5">
-    <div class="flex items-center text-sm gap-1 bg-gray-800 py-1 px-3 rounded-full">
-        <ng-icon name="octChevronUp"></ng-icon>
-        <span>10</span>
-        <ng-icon name="octChevronDown"></ng-icon>
-    </div>
-    <div class="flex items-center text-sm gap-1 bg-gray-800 py-1 px-3 rounded-full">
+    <div class="flex items-center text-sm gap-1 bg-gray-800 hover:bg-gray-600 py-1 px-3 rounded-full cursor-pointer" (click)="scrollToElement('comments-section')">
         <ng-icon name="octCommentDiscussion"></ng-icon>
-        <span>10</span>
+        <span>Comments</span>
     </div>
-    <div class="flex items-center text-sm gap-1 bg-gray-800 py-1 px-3 rounded-full">
+    <div class="flex items-center text-sm gap-1 bg-gray-800 hover:bg-gray-600 py-1 px-3 rounded-full cursor-pointer"
+        (click)="openShareModal($event)">
         <ng-icon name="octShare"></ng-icon>
         <span>Share</span>
     </div>
+
+    <!-- Share modal -->
+    <app-modal [isOpen]="isShareModalOpen">
+        <div class="flex flex-col gap-5">
+            <h2>Share a link to this post</h2>
+            <input type="text" class="w-full py-3 px-4 bg-black border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 duration-0 text-gray-600" readonly [value]="postUrl">
+            <div class="flex gap-5">
+                <button class="hover:text-gray-600 py-2 px-4 rounded-lg" (click)="isShareModalOpen=false">Close</button>
+                <button class="bg-green-600 hover:bg-green-900 py-2 px-4 rounded-lg" (click)="copyContent($event)">Copy</button>
+            </div>
+        </div>
+    </app-modal>
 </div>

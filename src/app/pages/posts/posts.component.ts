@@ -39,7 +39,7 @@ export class PostsComponent {
     private publicationService: PublicationService,
   ) { }
 
-  publication!: Publication;
+  publication!: Publication | null;
   comments!: PostComment[];
   newComment = new FormControl('', {
     validators: [Validators.minLength(0), Validators.required]
@@ -115,7 +115,7 @@ export class PostsComponent {
       return;
     }
 
-    this.commentService.addComment(Number(this.publication.id), this.newComment.value);
+    this.commentService.addComment(Number(this.publication?.id), this.newComment.value);
     this.newComment.reset();
     window.location.reload();
   }

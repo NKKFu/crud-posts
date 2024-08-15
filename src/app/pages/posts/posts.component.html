@@ -17,11 +17,11 @@
             <p class="text-sm break-all w-full">
                 {{ publication?.body }}
             </p>
-            <app-card-post-footer></app-card-post-footer>
+            <app-card-post-footer *ngIf="publication" [publication]="publication"></app-card-post-footer>
             <hr class="border-gray-700 my-5">
         </div>
 
-        <div>
+        <div id="comments-section">
             <textarea [formControl]="newComment" type="textarea" placeholder="Add a comment"
             class="w-full py-3 px-4 bg-black border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 resize-none overflow-hidden duration-0"
             rows="1" (input)="autoGrowTextHeight($event)"></textarea>

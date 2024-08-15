@@ -17,9 +17,7 @@ Pages & components
         - [ ] card-post-footer
             - [ ] card-post-footer-share-modal
 - [ ] posts/:id
-    - [ ] post-header
-    - [ ] post-content
-    - [ ] new-comment-modal
+    - [ ] post-component
     - [ ] card-comment
         - [ ] card-comment-edit-modal
         - [ ] card-comment-exclude-modal
