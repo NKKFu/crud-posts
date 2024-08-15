@@ -1,5 +1,7 @@
 # CrudPosts
 
+Available at: [https://nkkfu.github.io/crud-posts/](https://nkkfu.github.io/crud-posts/)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4 and was made as a part of a technical challenge of Angular for a job interview. Please check the file [CHALENGE.md](./CHALENGE.md) as they cite all instructions for this challenge, but please note they are in portuguese - Brazilian.
 
 ## Project Structure
@@ -18,9 +20,9 @@ Pages & components
             - [ ] card-post-footer-share-modal
 - [ ] posts/:id
     - [ ] post-component
-    - [ ] card-comment
         - [ ] card-comment-edit-modal
         - [ ] card-comment-exclude-modal
+
 Generic Components
 - [ ] modal
 
