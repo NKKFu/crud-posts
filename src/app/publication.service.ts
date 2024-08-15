@@ -22,6 +22,17 @@ export class PublicationService {
     this.updatePublication({ ...publication, isDeleted: true });
   }
 
+  addPublication(publication: Publication) {
+    const metadata = {
+      id: Math.random().toString(),
+      userId: Math.random().toString(),
+    }
+    this.updatePublication({
+      ...metadata,
+      ...publication,
+    } as Publication);
+  }
+
   updatePublication(publication: Publication): void {
     const previousPublications = this.getPostsFromLocalStorage();
     const publicationIndex = previousPublications.findIndex((p) => p.id === publication.id);
@@ -30,7 +41,8 @@ export class PublicationService {
       previousPublications[publicationIndex] = publication;
     } else {
       // Was not previously in the localStorage so we add it
-      previousPublications.push(publication);
+      // at the beginning of the array
+      previousPublications.unshift(publication);
     }
 
     localStorage.setItem('publications', JSON.stringify(previousPublications));

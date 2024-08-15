@@ -4,6 +4,7 @@ import { PublicationService } from '../../publication.service';
 import { NgFor } from '@angular/common';
 import { CardPostComponent } from "./card-post/card-post.component";
 import { CardPostHeaderComponent } from "./card-post/card-post-header/card-post-header.component";
+import { NewPostModalComponent } from "./new-post-modal/new-post-modal.component";
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,9 @@ import { CardPostHeaderComponent } from "./card-post/card-post-header/card-post-
   imports: [
     NgFor,
     CardPostComponent,
-    CardPostHeaderComponent
-  ],
+    CardPostHeaderComponent,
+    NewPostModalComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -32,8 +34,11 @@ export class HomeComponent {
   ngOnInit(): void {
     this.loadPostsFromServer((publicationsFromServer) => {
       const publicationsFromLocalStorage = this.publicationService.getPostsFromLocalStorage();
+      const publicationsIdFromServer = publicationsFromServer.map(p => p.id);
+      const newLocalPublications = publicationsFromLocalStorage
+        .filter(p => !publicationsIdFromServer.includes(p.id));
 
-      this.publications = publicationsFromServer
+      const publicationsFromServerUpdatedWithLocalChanges = publicationsFromServer
         .map((publication) => {
           const localPublication = publicationsFromLocalStorage.find((p) => p.id === publication.id) || {};
           return {
@@ -42,6 +47,11 @@ export class HomeComponent {
           };
         })
         .filter((publication) => !publication.isDeleted);
+
+      this.publications = [
+        ...newLocalPublications,
+        ...publicationsFromServerUpdatedWithLocalChanges,
+      ]
     });
   }
 }

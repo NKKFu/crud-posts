@@ -34,7 +34,7 @@ export class CardPostHeaderEditModalComponent {
 
   openEditModal() {
     this.editModalIsOpen = true;
-    
+
     // Set the form values to the current publication values
     this.editForm.controls.title.setValue(this.publication?.title)
     this.editForm.controls.body.setValue(this.publication?.body)

@@ -1,5 +1,8 @@
-<div class="bg-black text-slate-200 flex flex-col py-10">
-    <div *ngFor="let publication of publications" class="flex gap-3 flex-col max-w-screen-sm mx-auto w-full">
-        <app-card-post [publication]="publication"></app-card-post>
+<div class="bg-black text-slate-200 flex flex-col">
+    <div class="mx-auto max-w-screen-sm">
+        <app-new-post-modal />
+        <div *ngFor="let publication of publications" class="flex gap-3 flex-col w-full">
+            <app-card-post [publication]="publication"></app-card-post>
+        </div>
     </div>
 </div>

@@ -1,0 +1,18 @@
+.fadeable {
+    transition: all 0.5s;
+    top: 0;
+    z-index: 2;
+}
+
+.fadeable-show {
+    transform: translateY(calc(50vh - 50%));
+}
+
+.fadeable-show::after {
+    position: fixed;
+    transform: translateY(50%);
+}
+
+.hide-keeping-space::after {
+    display: flex;
+}
