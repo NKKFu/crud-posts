@@ -27,11 +27,12 @@ export class ModalComponent {
     this.onChange.emit(this.isOpen);
   }
 
-  backdropClick(_e: MouseEvent): void {
-    this.closeModal();
+  backdropClick(e: MouseEvent): void {
+    e.stopPropagation();
   }
 
   insideClick(e: MouseEvent): void {
+    e.stopPropagation();
     // To prevent the backdropClick event from being triggered
     e.stopPropagation();
   }

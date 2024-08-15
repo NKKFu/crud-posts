@@ -27,7 +27,7 @@ export class CardPostHeaderExcludeModalComponent {
   publication !: Publication;
   excludeModalIsOpen = false;
 
-  constructor (private publicationService: PublicationService) { }
+  constructor(private publicationService: PublicationService) { }
 
   cancelPost(): void {
     this.excludeModalIsOpen = false;
@@ -39,5 +39,10 @@ export class CardPostHeaderExcludeModalComponent {
 
     // Reload the page to reflect the changes
     window.location.reload();
+  }
+
+  openModal(e: Event) {
+    e.stopPropagation();
+    this.excludeModalIsOpen = true;
   }
 }

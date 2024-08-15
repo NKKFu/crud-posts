@@ -3,6 +3,7 @@ import { Publication } from '../../../publication';
 import { CardPostHeaderComponent } from "./card-post-header/card-post-header.component";
 import { CardPostContentComponent } from "./card-post-content/card-post-content.component";
 import { CardPostFooterComponent } from "./card-post-footer/card-post-footer.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-card-post',
@@ -10,7 +11,8 @@ import { CardPostFooterComponent } from "./card-post-footer/card-post-footer.com
   imports: [
     CardPostHeaderComponent,
     CardPostContentComponent,
-    CardPostFooterComponent
+    CardPostFooterComponent,
+    RouterModule,
 ],
   templateUrl: './card-post.component.html',
   styleUrl: './card-post.component.css'

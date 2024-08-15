@@ -1,6 +1,5 @@
-<div class="flex flex-column flex-col gap-3">
+<div [routerLink]="'/posts/' + publication.id" class="flex flex-column flex-col gap-3 p-3 cursor-pointer hover:bg-gray-900">
     <app-card-post-header [publication]="publication"></app-card-post-header>
     <app-card-post-content [publication]="publication"></app-card-post-content>
     <app-card-post-footer></app-card-post-footer>
-    <hr class="border-gray-700 my-5">
 </div>

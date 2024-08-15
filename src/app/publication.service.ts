@@ -13,6 +13,10 @@ export class PublicationService {
     return this.http.get<Publication[]>(`https://jsonplaceholder.typicode.com/posts`);
   }
 
+  getPublication(id: string): Observable<Publication> {
+    return this.http.get<Publication>(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  }
+
   getPostsFromLocalStorage(): Publication[] {
     const publications = localStorage.getItem('publications');
     return publications ? JSON.parse(publications) : [];
@@ -23,9 +27,12 @@ export class PublicationService {
   }
 
   addPublication(publication: Publication) {
+    const MAX_LENGTH_RANDOM_NUMBER = 999999999;
+    const randomId = () => (Math.random() * MAX_LENGTH_RANDOM_NUMBER).toFixed(0).toString();
+
     const metadata = {
-      id: Math.random().toString(),
-      userId: Math.random().toString(),
+      id: randomId(),
+      userId: randomId(),
     }
     this.updatePublication({
       ...metadata,

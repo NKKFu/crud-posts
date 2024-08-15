@@ -1,8 +1,9 @@
-<div class="bg-black text-slate-200 flex flex-col">
-    <div class="mx-auto max-w-screen-sm">
+<div class="bg-black text-slate-200 flex flex-col min-h-screen min-w-screen">
+    <div class="mx-auto max-w-screen-sm w-screen">
         <app-new-post-modal />
         <div *ngFor="let publication of publications" class="flex gap-3 flex-col w-full">
             <app-card-post [publication]="publication"></app-card-post>
+            <hr class="border-gray-700 my-5">
         </div>
     </div>
 </div>

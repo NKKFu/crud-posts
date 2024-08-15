@@ -32,7 +32,8 @@ export class CardPostHeaderEditModalComponent {
     body: new FormControl<string>(''),
   })
 
-  openEditModal() {
+  openEditModal(event: Event) {
+    event.stopPropagation();
     this.editModalIsOpen = true;
 
     // Set the form values to the current publication values

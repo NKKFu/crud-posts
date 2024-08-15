@@ -36,7 +36,8 @@ export class HomeComponent {
       const publicationsFromLocalStorage = this.publicationService.getPostsFromLocalStorage();
       const publicationsIdFromServer = publicationsFromServer.map(p => p.id);
       const newLocalPublications = publicationsFromLocalStorage
-        .filter(p => !publicationsIdFromServer.includes(p.id));
+        .filter(p => !publicationsIdFromServer.includes(p.id))
+        .filter(p => !p.isDeleted)
 
       const publicationsFromServerUpdatedWithLocalChanges = publicationsFromServer
         .map((publication) => {
