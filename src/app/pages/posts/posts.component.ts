@@ -44,7 +44,7 @@ export class PostsComponent {
   });
 
   private loadCommentsFromServer(id: string, callback: (value: PostComment[]) => void): void {
-    this.commentService.getComments(id).subscribe({
+    this.commentService.getCommentsFromServer(id).subscribe({
       next: callback,
       error: (err) => console.error('Error:', err),
       complete: () => console.log('Data fetched successfully')
@@ -79,7 +79,9 @@ export class PostsComponent {
     });
 
     this.loadCommentsFromServer(id.toString(), (comments) => {
-      this.comments = comments;
+      // Load comments from localStorage
+      const locallyStoredComments = this.commentService.getCommentsFromLocalStorage(id.toString());
+      this.comments = [...comments, ...locallyStoredComments];
     });
   }
 
@@ -90,6 +92,12 @@ export class PostsComponent {
   }
 
   submitForm() {
+    if (this.newComment.invalid) {
+      return;
+    }
 
+    this.commentService.addComment(Number(this.publication.id), this.newComment.value);
+    this.newComment.reset();
+    window.location.reload();
   }
 }
