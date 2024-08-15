@@ -1,5 +1,5 @@
 <div class="bg-black text-slate-200 flex flex-col h-full min-h-screen w-100 py-10">
-    <div class="mx-auto max-w-screen-sm flex flex-col w-screen gap-5">
+    <div class="mx-auto max-w-screen-sm flex flex-col w-screen gap-5 px-5">
         <div class="flex gap-2 items-center">
             <a routerLink="/" class="flex items-center">
                 <ng-icon name="octArrowLeft" class="text-3xl"></ng-icon>
@@ -18,12 +18,12 @@
                 {{ publication?.body }}
             </p>
             <app-card-post-footer></app-card-post-footer>
-            <hr class="pt-5">
+            <hr class="border-gray-700 my-5">
         </div>
 
         <div>
             <textarea [formControl]="newComment" type="textarea" placeholder="Add a comment"
-            class="w-full py-3 px-4 bg-black border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 resize-none overflow-hidden duration-0"
+            class="w-full py-3 px-4 bg-black border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 resize-none overflow-hidden duration-0"
             rows="1" (input)="autoGrowTextHeight($event)"></textarea>
         <button [disabled]="!newComment.valid" [style.opacity]="newComment.valid ? 1 : 0"
             (click)="submitForm()" class="flex">Publish</button>

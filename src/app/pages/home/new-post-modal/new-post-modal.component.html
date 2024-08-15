@@ -1,10 +1,10 @@
 <form class="text-white bg-red flex flex-col max-w-screen-sm w-full fadeable py-10 sticky"
     [class.fadeable-show]="isActive" [formGroup]="editForm">
     <input formControlName="title" type="text" placeholder="Title" [class.hidden]="!isActive"
-        class="-top-5 absolute w-full py-3 px-4 bg-black border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+        class="-top-5 absolute w-full py-3 px-4 bg-black border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
         [style.opacity]="isActive ? 1 : 0">
     <textarea formControlName="body" type="textarea" placeholder="Write something new to the world.."
-        class="w-full py-3 px-4 bg-black border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 resize-none overflow-hidden duration-0"
+        class="w-full py-3 px-4 bg-black border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 resize-none overflow-hidden duration-0"
         rows="1" (click)="isActive = true" (input)="autoGrowTextHeight($event)"></textarea>
     <button [class.hidden]="!isActive" style="position: absolute; bottom: 0;" [style.opacity]="isActive ? 1 : 0"
         (click)="submitForm()">Publish</button>

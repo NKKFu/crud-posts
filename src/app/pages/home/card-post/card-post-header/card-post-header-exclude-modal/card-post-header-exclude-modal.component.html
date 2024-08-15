@@ -3,8 +3,13 @@
     <p>This action cannot be reverted</p>
 
     <div class="flex mt-5">
-        <button class="bg-slate-700 py-2 px-4 text-white rounded-md mr-2" (click)="cancelPost()">Cancel</button>
-        <button class="bg-red-600 py-2 px-4 text-white rounded-md" (click)="deletePost()">Delete</button>
+        <button class="bg-slate-700 hover:bg-slate-900 py-2 px-4 text-white rounded-md mr-2"
+            (click)="cancelPost()">Cancel</button>
+        <button class="bg-red-600 hover:bg-red-900 py-2 px-4 text-white rounded-md"
+            (click)="deletePost()">Delete</button>
     </div>
 </app-modal>
-<ng-icon name="octTrash" (click)="openModal($event)"></ng-icon>
+
+<div class="p-2 hover:bg-red-900 rounded-full flex align-middle justify-items-center" (click)="openModal($event)">
+    <ng-icon name="octTrash" class="text-red-600"></ng-icon>
+</div>
